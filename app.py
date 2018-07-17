@@ -40,12 +40,13 @@ input and data. If match is found format a string that gets passed to the
 html file.  If not found format a string saying so"""
 
 def data_list(country):
-    for countries in country_list:
-        if country.lower() in countries['Country'].lower():
-            x = countries['Country']
-            y = countries['Side of Road']
-            return "The Country {}, {}".format(x, y)
-    return "I can't seem to find that Country :(   "
+    try:
+        data = next(filter(lambda x: country.lower() in x['Country'].lower(), country_list))
+        y = data['Country']
+        z = data["Side of Road"]
+        return "The Country {}, {}".format(y, z)
+    except:
+        return "I can't seem to find that Country :(   "
 
 """API will run on / with a form asking for 
 input of a country.  Then sends to data_list to handle
