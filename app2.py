@@ -35,9 +35,9 @@ def data_list(country):
         data = next(filter(lambda x: country.lower() in x['Country'].lower(), country_list))
         y = data['Country']
         z = data["Side of Road"]
-        return "The Country {}, {}".format(y, z)
+        return "The Country {}, {}".format(y, z), 200
     except:
-        return "I can't seem to find that Country :(   "
+        return "I can't seem to find that Country :(   ", 404
 
 @app.route('/')
 def index():
