@@ -18,7 +18,7 @@ def load_data(data):
     i = 0
     while i < len(data):
         new_entry = {
-            'Country': data[i].text.lower(),
+            'Country': data[i].text,
             'Side of Road': data[i+1].text
         }
         country_list.append(new_entry)
@@ -30,19 +30,21 @@ def format_user(name):
     name = name.capitalize()
     return name
 
-@app.route('/')
+"""@app.route('/', methods=['POST', 'GET'])
 def home():
-    return "This little project will tell you what side of the road a given country drives on"
+    pass"""
+
+    
 
 @app.route('/<country>')
 def data_list(country):
     for countries in country_list:
-        if country.lower() in countries['Country']:
+        if country.lower() in countries['Country'].lower():
             x = countries['Country']
             y = countries['Side of Road']
-            return "The Country {}, {}".format(x.capitalize(), y)
+            return "The Country {}, {}".format(x, y)
     return "I can't seem to find that Country :("
-                                                                                  #lowercase all dictionary countries and the input then format the output later
+
 @app.route('/complete_dictionary')
 def get_country():
     return jsonify({'country_list': country_list})
