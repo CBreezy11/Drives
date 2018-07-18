@@ -75,4 +75,4 @@ create our data and start the API on
 port 5000"""
 
 load_data(get_data())
-app.run(port=5000)
+app.run(host='0.0.0.0')
