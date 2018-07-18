@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+country_list = []
 
 def get_data():
     url = 'https://www.worldstandards.eu/cars/list-of-left-driving-countries/'
@@ -11,7 +12,6 @@ def get_data():
 
 def load_data(data):
     i = 0
-    country_list = []
     while i < len(data):
         new_entry = {
                 'Country': data[i].text,
@@ -20,4 +20,13 @@ def load_data(data):
         country_list.append(new_entry)
         i += 2
     return country_list
+
+def data_list(country):
+    try:
+        data = next(filter(lambda x: country.lower() in x['Country'].lower(), country_list))
+        y = data['Country']
+        z = data["Side of Road"]
+        return "The Country {}, {}".format(y, z)
+    except:
+        return "I can't seem to find that Country :(   "
 
