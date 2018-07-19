@@ -2,9 +2,9 @@ FROM python:3.6.6-slim
 
 WORKDIR /app
 
-ADD . /app
+COPY app.py /app
 
-RUN pip install -r requirements.txt
+RUN pip install Flask requests beautifulsoup4
 
 ENV NAME World
 
